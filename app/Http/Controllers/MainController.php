@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Comic;
 class MainController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class MainController extends Controller
      */
     public function index()
     {
-        //
+        $titolo = Comic::all();
+        return view("pages.index", compact("titolo"));
     }
 
     /**
@@ -23,7 +25,7 @@ class MainController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.create");
     }
 
     /**
@@ -34,7 +36,18 @@ class MainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request -> all();
+
+        $Fumetto = new Comic();
+
+        $Fumetto -> titolo =$data['titolo'];
+        $Fumetto -> numero_volume=$data['numero_volume'];
+        $Fumetto -> anno_pubblicazione=$data['anno_pubblicazione'];
+        $Fumetto ->  descrizione=$data['descrizione'];
+
+        $Fumetto -> save();
+
+        return redirect() -> route('users.show', $Fumetto -> id);
     }
 
     /**
@@ -45,7 +58,9 @@ class MainController extends Controller
      */
     public function show($id)
     {
-        //
+        $Fumetto = Comic :: find($id);
+
+        return view('pages.show', compact('Fumetto'));
     }
 
     /**
