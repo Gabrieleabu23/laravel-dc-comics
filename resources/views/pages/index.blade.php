@@ -26,7 +26,7 @@
     function delFumetto(event) {
 
         let scelta = confirm("Sei sicuro? ");
-        if (scelta == 'si' || scelta =="1") {
+        if (scelta ) {
             alert('Procedo con il delete...');
             document.getElementById('Form-1').submit();
         } else {
