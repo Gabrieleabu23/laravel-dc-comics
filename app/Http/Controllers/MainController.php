@@ -71,7 +71,8 @@ class MainController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Fumetto = Comic :: find($id);
+        return view('pages.edit', compact('Fumetto'));
     }
 
     /**
@@ -83,7 +84,17 @@ class MainController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Fumetto= Comic ::find($id);
+        $data= $request -> all();
+
+        $Fumetto -> titolo =$data['titolo'];
+        $Fumetto -> numero_volume=$data['numero_volume'];
+        $Fumetto -> anno_pubblicazione=$data['anno_pubblicazione'];
+        $Fumetto ->  descrizione=$data['descrizione'];
+
+        $Fumetto -> save();
+
+        return redirect() -> route('users.show', $Fumetto -> id);
     }
 
     /**
@@ -94,6 +105,8 @@ class MainController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Fumetto = Comic :: find($id);
+        $Fumetto -> delete();
+        return redirect() -> route('users.index');
     }
 }
