@@ -5,11 +5,13 @@
 @section('content')
     <h1>Fumetti</h1>
     <a href={{ route('users.create') }} class="my-4 d-inline-block text-dark text-decoration-none">AGGIUNGI FUMETTO</a>
+
     <ul>
         @foreach ($titolo as $item)
             <li>
                 <a href={{ route('users.show', $item->id) }}>Nome fumetto: {{ $item->titolo }} Anno pubblicazione:
-                    {{ $item->anno_pubblicazione }}</a>
+                    {{ $item->anno_pubblicazione }}
+                N.Volume:{{ $item->numero_volume }} </a>
                 <a class="mx-2 bg-dark text-white" href={{ route('users.edit', $item->id) }}>Modifica</a>
                 <form id="Form-1" class="d-inline-block" action="{{ route('users.destroy', $item->id) }}" method="POST">
 
