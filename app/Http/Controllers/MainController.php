@@ -37,14 +37,15 @@ class MainController extends Controller
     public function store(Request $request)
     {
         $data = $request -> all();
+        
         $request -> validate([
             'titolo'=>'required|string|min:3|max:255',
-            'anno_pubblicazione'=>'required|numeric|min:1920|max:2024',
+            'anno_pubblicazione'=>'required|numeric|min:1920|max:date(Y)',
             'numero_volume'=>'required|numeric|min:0|max:500',
             'descrizione'=>'required|string|min:1|max:200',
         ],[
             'titolo'=> 'DEVE essere tra 3 e 255 caratteri',
-            'anno_pubblicazione'=> 'DEVE essere tra 1920 e 2024',
+            'anno_pubblicazione'=> 'DEVE essere tra 1920 e date(y)',
             'numero_volume'=> 'DEVE essere tra 0 e 500',
             'descrizione'=> 'DEVE essere almeno una frase e massimo 4'
         ]);

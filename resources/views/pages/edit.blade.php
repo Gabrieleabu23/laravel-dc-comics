@@ -38,7 +38,7 @@
             value="{{ $Fumetto->anno_pubblicazione }}">
         <br>
         <label for="descrizione" class="d-block">Descrizione</label>
-        <textarea name="descrizione" id="descrizione" value="{{ $Fumetto->descrizione }}"></textarea>
+        <textarea name="descrizione" id="descrizione" >{{$Fumetto -> descrizione}}</textarea>
         <br>
         <input type="submit" value="Aggiorna">
     </form>
